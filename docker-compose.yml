@@ -1,0 +1,25 @@
+  $ docker build -t laravel-app .
+    Sending build context to Docker daemon 199.3 MB
+  Step 1 : FROM php:5.5-apache
+    ---> ff9a799b983b
+  Step 2 : RUN docker-php-ext-install pdo_mysql
+    ---> Running in 887b0da6b9f0
+
+    # ...
+
+    ---> c118d49af5a5
+    Removing intermediate container 887b0da6b9f0
+  Step 3 : RUN a2enmod rewrite
+    ---> Running in 404d0edd6155
+
+    # ...
+
+    ---> 3b310df07570
+    Removing intermediate container 404d0edd6155
+  Step 4 : ADD . /var/www
+    ---> 32a347cdecff
+    Removing intermediate container 38d0903c1043
+  Step 5 : ADD ./public /var/www/html
+    ---> 152beb432214
+    Removing intermediate container c714564b3dec
+    Successfully built 152beb432214
