@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "466e74905e6b7e45c774c2b78c04c32f",
+    "content-hash": "8146eb7bc1cd719c8be6ecd02db1c5a5",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -564,6 +564,56 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
+        },
+        {
+            "name": "hexters/coinpayment",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hexters/CoinPayment.git",
+                "reference": "f59612694bd3c2255381a2855f5031ac4d3024c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hexters/CoinPayment/zipball/f59612694bd3c2255381a2855f5031ac4d3024c9",
+                "reference": "f59612694bd3c2255381a2855f5031ac4d3024c9",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Hexters\\CoinPayment\\Providers\\CoinPaymentServiceProvider"
+                    ],
+                    "aliases": {
+                        "CoinPayment": "Hexters\\CoinPayment\\Helpers\\CoinPaymentFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hexters\\CoinPayment\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saifullah Syahidin",
+                    "email": "hexters@gmail.com"
+                }
+            ],
+            "description": "CoinPayment is a Laravel module for handling transactions from CoinPayment like a create transaction, history transaction, etc.",
+            "keywords": [
+                "Coinpayment",
+                "bitcoin",
+                "cryptocurrency",
+                "laravel",
+                "payment gateway"
+            ],
+            "time": "2019-09-02T01:30:30+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

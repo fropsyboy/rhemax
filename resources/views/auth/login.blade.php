@@ -67,7 +67,9 @@
                                  <button type="submit">LogIn</button><br>
                               </div>
 
-                              <div class="form-group row mb-0">
+                           </div>
+                        </form>
+                        <div class="form-group row mb-0">
                                     <div class="col-md-8 offset-md-4">
                                         @if (Route::has('password.request'))
                                             <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -75,15 +77,12 @@
                                             </a>
                                         @endif
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a class="btn btn-link" href="{{ route('welcome') }}">
-                                            <button class="btn btn-sm">{{ __('Home Page') }}</button>
+                                        <a class="btn btn-link" href="{{ route('register') }}">
+                                            <button class="btn btn-sm">{{ __('Register') }}</button>
 
                                             </a>
                                     </div>
                                 </div>
-
-                           </div>
-                        </form>
                      </div>
                   </div>
 
@@ -92,7 +91,7 @@
          </div>
       </div>
       <div class="copy">
-         <p>&copy; 2019 Able Share SMS. All Rights Reserved.</p>
+         <p>&copy; 2019 RHEMAX. All Rights Reserved.</p>
       </div>
       <!--js working-->
       <script src="{{ asset('auth/js/jquery-2.2.3.min.js') }}"></script>

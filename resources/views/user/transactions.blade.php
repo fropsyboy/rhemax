@@ -26,7 +26,7 @@
                                                 <div class="ripple-container"></div>
                                             </a>
                                         </li>
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a class="nav-link active" href="#" data-toggle="tab">
                                                 <i class="material-icons">attach_money</i>
                                                 <button type="button" class="btn  btn-sm btn-secondary" data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
@@ -34,7 +34,7 @@
                                                 </button>
                                                 <div class="ripple-container"></div>
                                             </a>
-                                        </li>
+                                        </li> -->
 
                                     </ul>
                                 </div>
@@ -48,44 +48,48 @@
                                         <thead class="text-warning">
                                         <th>ID</th>
                                         <th>Method</th>
-                                        <th>Amount</th>
-                                        <th>Credit</th>
+                                        <th>Amount(BTC)</th>
+                                        <th>Received</th>
                                         <th>Status</th>
                                         <th>Date</th>
-                                        @role('admin')
+                                        <!-- @role('admin') -->
                                         <th>Action</th>
-                                        @endrole
+                                        <!-- @endrole -->
                                         </thead>
                                         <tbody>
                                         <?php $i = 1; ?>
                                         @foreach($trans as $item)
                                             <tr>
                                                 <td>{{$i}}</td>
-                                                <td> Offline Method </td>
-                                                <td>{{$item->amount}}</td>
-                                                <td>{{$item->credit}}</td>
+                                                <td> Token Conversion </td>
+                                                <td>{{$item->amountf}}</td>
+                                                <td>{{$item->received}}</td>
                                                 <td>
-                                                    @if($item->status=='pending')
+                                                    @if($item->status==0)
                                                         <span class="btn btn-primary">
-                                                                {{strtoupper($item->status)}}
+                                                                WAITING
                                                                 </span>
-                                                    @elseif($item->status=='successful')
+                                                    @elseif($item->status==1)
+                                                        <span class="btn btn-info">
+                                                                PENDING
+                                                                 </span>
+                                                    @elseif($item->status==100)
                                                         <span class="btn btn-success">
-                                                                {{strtoupper($item->status)}}
+                                                                SUCCESSFUL
                                                                  </span>
                                                     @else
-                                                        <span class="btn btn-danger">
-                                                                {{strtoupper($item->status)}}
+                                                    <span class="btn btn-danger">
+                                                                FAILED
                                                                  </span>
                                                     @endif
                                                 </td>
                                                 <td> {{$item->created_at}} </td>
-                                                @role('admin')
+                                                <!-- @role('admin')
                                                 <td>
                                                     <button class="btn btn-xs btn-danger">Delete</button>
                                                     <button class="btn btn-xs btn-success">Accept</button>
                                                 </td>
-                                                @endrole
+                                                @endrole -->
                                             </tr>
                                             <?php $i++; ?>
                                         @endforeach
@@ -139,9 +143,9 @@
                         </div>
                         <div class="form-group">
                             <label for="credit" class="col-form-label">Add Credit</label>
-                            <input type="number" step="1" min="500" class="form-control" placeholder=" " name="credit"  required="">
+                            <input type="number" step="1" min="500" class="form-control" placeholder=" " name="amount"  required="">
                         </div>
-                        <p><font color="red">Note : 2 Naira per unit </font> </p>
+                        <p><font color="red">Note : Currency is in USD </font> </p>
                         <div class="right-w3l text-center">
                             <button type="submit" class="btn  btn-success center-block" >
                                 Top Up

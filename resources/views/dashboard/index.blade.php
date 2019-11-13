@@ -10,15 +10,16 @@
                   <div class="card-icon">
                     <i class="material-icons">content_copy</i>
                   </div>
-                  <p class="card-category">Used Credit</p>
-                  <h3 class="card-title">{{$user->used}}
+                  <p class="card-category">Total Balance</p>
+                  <h3 class="card-title">{{$balance}}
                     <small>CRs</small>
                   </h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons text-danger">warning</i>
-                    <a href="#pablo">Top Up credit...</a>
+                    <button type="button" class="btn  btn-sm btn-secondary" data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
+                    <i class="material-icons text-danger">warning</i> Top Up credit...
+                    </button>
                   </div>
                 </div>
               </div>
@@ -29,8 +30,8 @@
                   <div class="card-icon">
                     <i class="material-icons">store</i>
                   </div>
-                  <p class="card-category">Balance</p>
-                  <h3 class="card-title">{{$user->credit}}</h3>
+                  <p class="card-category">Referral Commission</p>
+                  <h3 class="card-title">0.000088</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -45,12 +46,12 @@
                   <div class="card-icon">
                     <i class="material-icons">info_outline</i>
                   </div>
-                  <p class="card-category">Total Delivered</p>
+                  <p class="card-category">Total Spend</p>
                   <h3 class="card-title">+75</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">local_offer</i> Tracked per Year
+                    <i class="material-icons">local_offer</i> Tracked per Transactions
                   </div>
                 </div>
               </div>
@@ -61,25 +62,25 @@
                   <div class="card-icon">
                     <i class="fa fa-twitter"></i>
                   </div>
-                  <p class="card-category">Total Failed</p>
-                  <h3 class="card-title">-2</h3>
+                  <p class="card-category">Transactions Pending</p>
+                  <h3 class="card-title">{{$wait}}</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">update</i> Tracked per Year
+                    <i class="material-icons">update</i> Tracked per Second
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-4">
               <div class="card card-chart">
                 <div class="card-header card-header-success">
                   <div class="ct-chart" id="dailySalesChart"></div>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">SMS Delivery</h4>
+                  <h4 class="card-title">Token Delivery</h4>
                   <p class="card-category">
                     <span class="text-success"><i class="fa fa-long-arrow-up"></i> 100% </span> Delivery rate always.</p>
                 </div>
@@ -122,44 +123,50 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <div class="col-lg-6 col-md-12">
               <div class="card">
                 <div class="card-header card-header-tabs card-header-primary">
-                  <div class="nav-tabs-navigation">
-                    <div class="nav-tabs-wrapper">
-                      <span class="nav-tabs-title">Top 5:</span>
-                      <ul class="nav nav-tabs" data-tabs="tabs">
-                        <li class="nav-item">
-                          <a class="nav-link active" href="#profile" data-toggle="tab">
-                            <i class="material-icons">bug_report</i> SMS History
-                            <div class="ripple-container"></div>
-                          </a>
-                        </li>
-
-                      </ul>
-                    </div>
-                  </div>
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Top Up's</h4>
+                  <p class="card-category">Online Top Up only Top 5</p>
+                </div>
                 </div>
                   <div class="card-body table-responsive">
                       <table class="table table-hover">
                           <thead class="text-warning">
                           <th>ID</th>
-                          <th>Sender</th>
-                          <th>Pages</th>
-                          <th>Message</th>
-                          <th>Credit</th>
+                          <th>Amount(BTC)</th>
+                          <th>Status</th>
+                          <th>Date</th>
                           </thead>
                           <tbody>
                           <?php $i = 1; ?>
                           @foreach($message as $item)
                               <tr>
                                   <td>{{$i}}</td>
-                                  <td>{{$item->sender}}</td>
-                                  <td>{{$item->page}}</td>
-                                  <td>{{ str_limit($item->message, $limit = 30, $end = '...') }}</td>
-                                  <td>{{$item->credit}}</td>
+                                  <td>{{$item->amountf}}</td>
+                                  <td>
+                                                    @if($item->status==0)
+                                                        <span class="btn btn-primary">
+                                                                WAITING
+                                                                </span>
+                                                    @elseif($item->status==1)
+                                                        <span class="btn btn-info">
+                                                                PENDING
+                                                                 </span>
+                                                    @elseif($item->status==100)
+                                                        <span class="btn btn-success">
+                                                                SUCCESSFUL
+                                                                 </span>
+                                                    @else
+                                                    <span class="btn btn-danger">
+                                                                FAILED
+                                                                 </span>
+                                                    @endif
+                                                </td>
+                                  <td>{{$item->created_at}}</td>
 
                               </tr>
                               <?php $i++; ?>
@@ -221,4 +228,41 @@
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Top Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('add_trans') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Select Method</label>
+                            <select name="type" class="form-control" required>
+                                <option>--Select Option--</option>
+                                <option value="online" disabled>Online => (Master Card, Verve, etc...)</option>
+                                <option value="offline">Offline => (Bank Payment, Transfer, etc...)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="credit" class="col-form-label">Add Credit</label>
+                            <input type="number" step="1" min="500" class="form-control" placeholder=" " name="amount"  required="">
+                        </div>
+                        <p><font color="red">Note : Currency is in USD </font> </p>
+                        <div class="right-w3l text-center">
+                            <button type="submit" class="btn  btn-success center-block" >
+                                Top Up
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
       @endsection

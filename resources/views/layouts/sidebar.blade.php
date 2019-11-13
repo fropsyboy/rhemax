@@ -4,7 +4,7 @@
         Tip 2: you can also add an image using data-image tag -->
       <div class="logo">
         <a href="{{ route('dashboard') }}" class="simple-text logo-normal">
-          Able Share SMS
+          RHEMAX (RMX)
         </a>
       </div>
       <div class="sidebar-wrapper">
@@ -15,15 +15,21 @@
               <p>Dashboard</p>
             </a>
           </li>
-            <li class="nav-item @if($page=='Messages') active @endif">
+            <!-- <li class="nav-item @if($page=='Messages') active @endif">
                 <a class="nav-link " href="{{ route('messages') }}">
                     <i class="material-icons">mail</i>
                     <p>Message</p>
                 </a>
-            </li>
+            </li> -->
           <li class="nav-item ">
             <a class="nav-link" href="{{route('transaction')}}">
               <i class="material-icons">library_books</i>
+              <p>Top Ups</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{{route('transaction')}}">
+              <i class="material-icons">mails</i>
               <p>Transactions</p>
             </a>
           </li>

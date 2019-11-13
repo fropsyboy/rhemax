@@ -12,15 +12,18 @@
 */
 
 
-Route::get('/', 'PagesController@welcome')->name('welcome');
-
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 Route::get('/user', 'HomeController@user')->name('user');
 
-//Route::get('/messages', 'HomeController@messages')->name('messages');
+Route::get('/try', 'PagesController@tryout')->name('try');
+
+Route::get('/back_to_tarnsaction', 'PagesController@back_to_tarnsaction')->name('back_to_tarnsaction');
 
 Route::get('/transaction', 'HomeController@transactions')->name('transaction');
 

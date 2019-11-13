@@ -37,18 +37,4 @@ class AdminController extends Controller
         return view('admin.trans', $data);
     }
 
-    public function add_credit(Request $request)
-    {
-        $user = User::where('id', $request->user)->first();
-
-        $new = $request->credit + $user->credit;
-
-        User::where('id', $user->id)->update([
-            'credit' => $new,
-        ]);
-
-        \Session::flash('message', 'Top Up Successfully Done' );
-
-        return back();
-    }
 }
