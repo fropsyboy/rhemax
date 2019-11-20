@@ -22,7 +22,7 @@
 {{--                                                <div class="ripple-container"></div>--}}
 {{--                                            </a>--}}
 {{--                                        </li>--}}
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a class="nav-link " href="#" data-toggle="tab">
                                                 <i class="material-icons">input</i>
                                                 <button type="button" class="btn  btn-sm btn-secondary" data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
@@ -30,7 +30,7 @@
                                                 </button>
                                                 <div class="ripple-container"></div>
                                             </a>
-                                        </li>
+                                        </li> -->
 
                                     </ul>
                                 </div>
@@ -45,7 +45,7 @@
                                         <th>ID</th>
                                         <th>Full Name</th>
                                         <th>Email</th>
-                                        <th>Credit</th>
+                                        <th>Phone Number</th>
                                         <th>Date</th>
                                         <th>Action</th>
                                         </thead>
@@ -56,7 +56,7 @@
                                                 <td>{{$i}}</td>
                                                 <td>{{$item->name}}  {{$item->lname}}</td>
                                                 <td>{{$item->email}}</td>
-                                                <td>{{$item->credit}}</td>
+                                                <td>{{$item->phone}}</td>
                                                 <td>{{$item->created_at}}</td>
                                                 <td>
                                                     <a href="{{route('user_trans',['id' => $item->id])}}" >

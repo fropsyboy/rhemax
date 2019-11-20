@@ -16,7 +16,6 @@
                                 <div class="nav-tabs-wrapper">
                                     <span class="nav-tabs-title">Top Up Account --&raquo;</span>
                                     <ul class="nav nav-tabs" data-tabs="tabs">
-
                                         <li class="nav-item">
                                             <a class="nav-link active" href="#" data-toggle="tab">
                                                 <i class="material-icons">sync_problem</i>
@@ -26,15 +25,6 @@
                                                 <div class="ripple-container"></div>
                                             </a>
                                         </li>
-                                        <!-- <li class="nav-item">
-                                            <a class="nav-link active" href="#" data-toggle="tab">
-                                                <i class="material-icons">attach_money</i>
-                                                <button type="button" class="btn  btn-sm btn-secondary" data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
-                                                    Payment Details
-                                                </button>
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </li> -->
 
                                     </ul>
                                 </div>
@@ -51,10 +41,12 @@
                                         <th>Amount(BTC)</th>
                                         <th>Received</th>
                                         <th>Status</th>
+                                        <th>Payment Status</th>
                                         <th>Date</th>
-                                        <!-- @role('admin') -->
+                                         @role('admin') 
+                                         <th>Wallet</th>
                                         <th>Action</th>
-                                        <!-- @endrole -->
+                                         @endrole 
                                         </thead>
                                         <tbody>
                                         <?php $i = 1; ?>
@@ -83,13 +75,35 @@
                                                                  </span>
                                                     @endif
                                                 </td>
-                                                <td> {{$item->created_at}} </td>
-                                                <!-- @role('admin')
+
                                                 <td>
-                                                    <button class="btn btn-xs btn-danger">Delete</button>
-                                                    <button class="btn btn-xs btn-success">Accept</button>
+                                                    @if($item->payment=='pending')
+                                                        <span class="btn btn-primary">
+                                                                PENDING
+                                                                </span>
+                                                    @elseif($item->payment=='completed')
+                                                        <span class="btn btn-success">
+                                                                COMPLETED
+                                                                 </span>
+                                                    @else
+                                                    <span class="btn btn-danger">
+                                                                FAILED
+                                                                 </span>
+                                                    @endif
                                                 </td>
-                                                @endrole -->
+
+                                                <td> {{$item->created_at}} </td>
+                                                @role('admin')
+                                                <td>
+                                                {{$wallet}}
+                                                </td>
+
+                                                <td>
+                                                    <a href="{{route('accept_payment',['id' => $item->id])}}" >
+                                                    <button class="btn btn-xs btn-success">Confirmed</button>
+                                                    </a>
+                                                </td>
+                                                @endrole
                                             </tr>
                                             <?php $i++; ?>
                                         @endforeach
@@ -137,13 +151,13 @@
                             <label for="recipient-name" class="col-form-label">Select Method</label>
                             <select name="type" class="form-control" required>
                                 <option>--Select Option--</option>
-                                <option value="online" disabled>Online => (Master Card, Verve, etc...)</option>
-                                <option value="offline">Offline => (Bank Payment, Transfer, etc...)</option>
+                                <option value="online">Online => (Coin Transfer, Barcode Scanning, etc...)</option>
+                                <option value="offline" disabled>Ofline => ()</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="credit" class="col-form-label">Add Credit</label>
-                            <input type="number" step="1" min="500" class="form-control" placeholder=" " name="amount"  required="">
+                            <input type="number" step="1" min="5" class="form-control" placeholder=" " name="amount"  required>
                         </div>
                         <p><font color="red">Note : Currency is in USD </font> </p>
                         <div class="right-w3l text-center">

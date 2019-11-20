@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Transaction;
 use Illuminate\Http\Request;
 use Session;
 
@@ -28,13 +29,29 @@ class AdminController extends Controller
 
     public function user_trans($id)
     {
-        $users = User::where('id', $id)->first();
-
+        $user = auth()->user();
+        $trans = Transaction::where('payload', $id)->orderby('id','desc')->paginate(10);
         $data = [
-            'page' => 'AdminUsers',
-            'user' => $users
+            'page' => 'Transactions',
+            'trans' => $trans,
+            'wallet' => $user->wallet
         ];
-        return view('admin.trans', $data);
+        return view('user.transactions', $data);
+    }
+
+    public function accept_payment($id)
+    {
+        try {
+            Transaction::where('id', $id)->update([
+                'payment' => 'completed',
+            ]);
+            \Session::flash('message', 'Transaction successfully Updated' );
+
+        }catch (\Exception $e) {
+            \Session::flash('error', 'There was an error while saving your details, Please try again' );
+
+        }
+        return back();
     }
 
 }
