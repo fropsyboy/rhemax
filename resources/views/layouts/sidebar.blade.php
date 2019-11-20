@@ -21,12 +21,7 @@
                     <p>Message</p>
                 </a>
             </li> -->
-          <li class="nav-item ">
-            <a class="nav-link" href="{{route('transaction')}}">
-              <i class="material-icons">library_books</i>
-              <p>Top Ups</p>
-            </a>
-          </li>
+
           <li class="nav-item ">
             <a class="nav-link" href="{{route('transaction')}}">
               <i class="material-icons">mails</i>
@@ -40,6 +35,14 @@
                 </a>
             </li>
             @role('admin')
+
+            <li class="nav-item ">
+            <a class="nav-link" href="{{route('admin-transaction')}}">
+              <i class="material-icons">library_books</i>
+              <p>Top Ups</p>
+            </a>
+          </li>
+
           <li class="nav-item @if($page=='AdminUsers') active @endif">
             <a class="nav-link" href="{{route('adminUsers')}}">
               <i class="material-icons">bubble_chart</i>

@@ -69,7 +69,8 @@ class HomeController extends Controller
         $trans = Transaction::where('payload', $user->id)->orderby('id','desc')->paginate(10);
         $data = [
             'page' => 'Transactions',
-            'trans' => $trans
+            'trans' => $trans,
+            'wallet' => $user->wallet
         ];
         return view('user.transactions', $data);
     }
@@ -84,6 +85,8 @@ class HomeController extends Controller
                 'city' => $request->city,
                 'state' => $request->state,
                 'about' => $request->about,
+                'wallet' => $request->wallet,
+                'phone' => $request->phone,
             ]);
             \Session::flash('message', 'Your details has been successfully saved' );
 
@@ -129,10 +132,44 @@ class HomeController extends Controller
 
       
         $transaction['payload'] = $user->id;
+
       
         $link = \CoinPayment::generatelink($transaction);
 
         return redirect($link);
+    }
+
+    public function admin_transactions()
+    {
+        $user = auth()->user();
+        $trans = Transaction::orderby('id','desc')->paginate(10);
+        $data = [
+            'page' => 'Transactions',
+            'trans' => $trans,
+            'wallet' => $user->wallet
+        ];
+        return view('user.transactions', $data);
+    }
+
+    public function transactions_update()
+    {
+        $trans = Transaction::where('status','0')->orderby('id','desc')->get();
+
+
+        foreach($trans as $item){
+
+            $response =  \CoinPayment::getstatusbytxnid($item->txn_id);
+
+
+            Transaction::where('id', $item->id)->update([
+                'status' => $response['status'],
+                'status_text' => $response['status_text'],
+            ]);
+        }
+
+        \Session::flash('message', 'Transactions Updated successfully' );
+
+        return redirect('/transactions');
     }
 
 }

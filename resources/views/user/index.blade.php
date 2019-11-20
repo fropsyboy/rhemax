@@ -39,12 +39,27 @@
                     </div>
                       <br><br>
                     <div class="row">
-                      <div class="col-md-12">
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email Address</label>
                           <input type="text" class="form-control" value="{{$user->email}}" readonly>
                         </div>
                       </div>
+
+                     <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Wallet Address</label>
+                          <input type="text" class="form-control" value="{{$user->wallet}}" name="wallet" >
+                        </div>
+                      </div> 
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Phone Number</label>
+                          <input type="text" class="form-control" value="{{$user->phone}}" name="phone" >
+                        </div>
+                      </div>
+
                     </div>
                       <br><br>
                     <div class="row">

@@ -11,8 +11,9 @@
                     <i class="material-icons">content_copy</i>
                   </div>
                   <p class="card-category">Total Balance</p>
-                  <h3 class="card-title">{{$balance}}
-                    <small>CRs</small>
+                  <h3 class="card-title">
+                  {{ str_limit($balance, $limit = 7, $end = '..') }}
+                    <!-- <small>CRs</small> -->
                   </h3>
                 </div>
                 <div class="card-footer">
@@ -30,7 +31,7 @@
                   <div class="card-icon">
                     <i class="material-icons">store</i>
                   </div>
-                  <p class="card-category">Referral Commission</p>
+                  <p class="card-category">Referral</p>
                   <h3 class="card-title">0.000088</h3>
                 </div>
                 <div class="card-footer">
@@ -62,7 +63,7 @@
                   <div class="card-icon">
                     <i class="fa fa-twitter"></i>
                   </div>
-                  <p class="card-category">Transactions Pending</p>
+                  <p class="card-category">Trans Pending</p>
                   <h3 class="card-title">{{$wait}}</h3>
                 </div>
                 <div class="card-footer">
@@ -192,7 +193,7 @@
                       <th>Date</th>
                     </thead>
                     <tbody>
-                      <tr>
+                      <!-- <tr>
                         <td>1</td>
                         <td>$36,738</td>
                         <td>40,000</td>
@@ -219,7 +220,7 @@
                         <td>$38,735</td>
                           <td>successful</td>
                           <td>Korea, South</td>
-                      </tr>
+                      </tr> -->
                     </tbody>
                   </table>
                 </div>
@@ -245,13 +246,13 @@
                             <label for="recipient-name" class="col-form-label">Select Method</label>
                             <select name="type" class="form-control" required>
                                 <option>--Select Option--</option>
-                                <option value="online" disabled>Online => (Master Card, Verve, etc...)</option>
-                                <option value="offline">Offline => (Bank Payment, Transfer, etc...)</option>
+                                <option value="online">Online => (Coin Transfer, Barcode Scanning, etc...)</option>
+                                <option value="offline" disabled>Ofline => ()</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="credit" class="col-form-label">Add Credit</label>
-                            <input type="number" step="1" min="500" class="form-control" placeholder=" " name="amount"  required="">
+                            <input type="number" step="1" min="500" class="form-control" placeholder=" " name="amount"  required>
                         </div>
                         <p><font color="red">Note : Currency is in USD </font> </p>
                         <div class="right-w3l text-center">

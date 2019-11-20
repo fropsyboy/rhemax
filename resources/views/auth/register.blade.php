@@ -62,6 +62,11 @@
                                     </span>
                                   @enderror
                               </div>
+
+                              <div class="form-right-w3ls ">
+                                 <input type="text" name="phone" placeholder="Phone Number" required  >
+                              </div>
+
                               <div class="form-right-w3ls ">
                                  <input type="password" name="password" placeholder="Password" required autocomplete="current-password" >
                                   @error('password')
