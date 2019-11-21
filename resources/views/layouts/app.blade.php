@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Able Share SMS : SMS-Portal</title>
+    <title>RHEMAX : SMS-Portal</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
