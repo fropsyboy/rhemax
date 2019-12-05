@@ -101,7 +101,6 @@ class HomeController extends Controller
     public function adminUsers()
     {
         $user = auth()->user();
-        dd($user);
 
         $data = [
             'page' => 'User',
