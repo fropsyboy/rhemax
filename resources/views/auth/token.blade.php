@@ -28,16 +28,16 @@
       <div class="art-bothside">
          <div class="sap_tabs">
          @if(session()->has('msg'))
-                <div class="alert alert-danger">
+                <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <font color="red"><strong>Alert...! </strong> {{ Session::get('msg', '') }} </font>
+                    <strong>Alert...! </strong> {{ Session::get('msg', '') }}
                 </div>
             @endif
             <div id="horizontalTab">
                <ul class="resp-tabs-list">
                   <li class="resp-tab-item">
                             <div class="icon-head-wthree">
-                                 <h2>Login Here</h2>
+                                 <h2>Token Here</h2>
                             </div>
                     </li>
                </ul>
@@ -45,29 +45,27 @@
                <div class="resp-tabs-container">
                   <div class="tab-1 resp-tab-content">
                      <div class="swm-right-w3ls">
-                        <form action="{{ route('sendToken') }}" method="post">
+                        <form action="{{ route('sendLogin') }}" method="post">
                             @csrf
 
                            <div class="main">
                               <div class="icon-head-wthree">
                                  <!-- <h2>Login Here</h2> -->
                               </div>
-                              <div class="form-left-to-w3l">
-                                 <input type="text"  name="email" placeholder=" Email " required autocomplete="email" autofocus>
-                                  @error('email')
-                                  <span class="invalid-feedback" role="alert">
-                                        <strong style="color: #761b18;">{{ $message }}</strong>
-                                    </span>
-                                  @enderror
-                              </div>
+
                               <div class="form-right-w3ls ">
-                                 <input type="password" name="password" placeholder="Password" required autocomplete="current-password" >
-                                  @error('password')
-                                  <span class="invalid-feedback" role="alert">
-                                        <strong style="color: #761b18;">{{ $message }}</strong>
-                                    </span>
-                                  @enderror
+                              <label> Token </label>
+                                 <input type="password" name="token" placeholder="" value="" required  >
+                                 <br></br>
+                               
                               </div>
+
+
+                              <div class="form-left-to-w3l">
+                                 <input type="text"  name="email" placeholder=" Email " value="" autocomplete="email"  required>
+                              </div>
+                             
+                           
 
                               <div class="btnn">
                                  <button type="submit">LogIn</button><br>
@@ -75,20 +73,7 @@
 
                            </div>
                         </form>
-                        <div class="form-group row mb-0">
-                                    <div class="col-md-8 offset-md-4">
-                                        @if (Route::has('password.request'))
-                                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            <button class="btn btn-sm btn-dark">{{ __('Forgot Password?') }}</button>
-                                            </a>
-                                        @endif
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a class="btn btn-link" href="{{ route('register') }}">
-                                            <button class="btn btn-sm">{{ __('Register') }}</button>
-
-                                            </a>
-                                    </div>
-                                </div>
+        
                      </div>
                   </div>
 
