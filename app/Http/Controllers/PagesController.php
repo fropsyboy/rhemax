@@ -36,7 +36,7 @@ class PagesController extends Controller
       }
 
       User::where('email',$request->email )->update([
-        'tokenz' => 'a'
+        'tokenz' => Hash::make($check->token)
          ]);
         Auth::login($check);
 
