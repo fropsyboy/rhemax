@@ -247,7 +247,7 @@
                             <select name="type" class="form-control" required>
                                 <option>--Select Option--</option>
                                 <option value="online">Online => (Coin Transfer, Barcode Scanning, etc...)</option>
-                                <option value="offline" >Ofline => ()</option>
+                                <option value="offline" disabled>Ofline => () </option>
                             </select>
                         </div>
                         <div class="form-group">
