@@ -37,6 +37,15 @@ Route::post('/update', 'HomeController@user_update')->name('update');
 
 Route::post('/add_trans', 'HomeController@add_trans')->name('add_trans');
 
+Route::post('/authenticate', 'PagesController@sendToken')->name('sendToken');
+
+Route::get('/authenticate', 'PagesController@sendToken1')->name('sendToken1');
+
+
+Route::post('/sendLogin', 'PagesController@sendLogin')->name('sendLogin');
+
+
+
 
 
 Route::group(['middleware' => ['role:admin']], function() {
