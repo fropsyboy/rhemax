@@ -34,6 +34,20 @@
                     <p>User Profile</p>
                 </a>
             </li>
+
+            <li class="nav-item @if($page=='User') active @endif">
+                <a class="nav-link " href="{{ route('user') }}">
+                    <i class="material-icons">view_carousel</i>
+                    <p>My Skills</p>
+                </a>
+            </li>
+
+            <li class="nav-item @if($page=='User') active @endif">
+                <a class="nav-link " href="{{ route('user') }}">
+                    <i class="material-icons">unarchive</i>
+                    <p>My Library</p>
+                </a>
+            </li>
             @role('admin')
 
             <li class="nav-item ">
@@ -47,6 +61,13 @@
             <a class="nav-link" href="{{route('adminUsers')}}">
               <i class="material-icons">bubble_chart</i>
               <p>Users</p>
+            </a>
+          </li>
+
+          <li class="nav-item @if($page=='Write ups') active @endif">
+            <a class="nav-link" href="{{route('write_ups')}}">
+              <i class="material-icons">apps</i>
+              <p>Write-Ups</p>
             </a>
           </li>
             @endrole

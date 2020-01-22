@@ -62,5 +62,7 @@ Route::group(['middleware' => ['role:admin']], function() {
 
     Route::get('/run', 'HomeController@transactions_update')->name('update');
 
+    Route::get('/write_ups', 'HomeController@write_ups')->name('write_ups');
+
 
 });
