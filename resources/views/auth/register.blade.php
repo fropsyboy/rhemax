@@ -46,43 +46,38 @@
                               <div class="icon-head-wthree">
                                  <!-- <h2>Login Here</h2> -->
                               </div>
-                              <div class="form-left-to-w3l">
-                                 <input type="text"  name="name" placeholder=" Name " required autocomplete="email" autofocus>
-                                  @error('email')
+                              @error('password')
                                   <span class="invalid-feedback" role="alert">
-                                        <strong style="color: #761b18;">{{ $message }}</strong>
+                                        <strong style="color: #FFFFFF ;">{{ $message }}</strong>
                                     </span>
                                   @enderror
+                                 @error('email')
+                                  <span class="invalid-feedback" role="alert">
+                                        <strong style="color: #FFFFFF ;">{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                              <div class="form-left-to-w3l">
+                              
+                                 <input type="text"  name="name" placeholder=" Name " required autocomplete="email" autofocus>
+                                  
                               </div>
                               <div class="form-left-to-w3l">
                                  <input type="text"  name="email" placeholder=" Email " required autocomplete="email" autofocus>
-                                  @error('email')
-                                  <span class="invalid-feedback" role="alert">
-                                        <strong style="color: #761b18;">{{ $message }}</strong>
-                                    </span>
-                                  @enderror
+                                 
                               </div>
 
-                              <div class="form-right-w3ls ">
-                                 <input type="text" name="phone" placeholder="Phone Number" required  >
+                              <div class="form-left-to-w3l">
+                                 <input type="text" name="phone" placeholder="Phone Number" required  autofocus>
                               </div>
 
                               <div class="form-right-w3ls ">
                                  <input type="password" name="password" placeholder="Password" required autocomplete="current-password" >
-                                  @error('password')
-                                  <span class="invalid-feedback" role="alert">
-                                        <strong style="color: #761b18;">{{ $message }}</strong>
-                                    </span>
-                                  @enderror
+                                 
                               </div>
 
                                <div class="form-right-w3ls ">
                                  <input type="password" name="password_confirmation" placeholder="Confirm Password" required autocomplete="current-password" >
-                                  @error('password')
-                                  <span class="invalid-feedback" role="alert">
-                                        <strong style="color: #761b18;">{{ $message }}</strong>
-                                    </span>
-                                  @enderror
+                                  
                               </div>
 
                               <div class="btnn">

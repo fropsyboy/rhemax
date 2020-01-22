@@ -171,4 +171,16 @@ class HomeController extends Controller
         return redirect('/transactions');
     }
 
+    public function write_ups()
+    {
+        $trans = [];
+
+        $data = [
+            'page' => 'Write ups',
+            'write_ups' => $trans,
+        ];
+
+        return view('admin.write', $data);
+    }
+
 }
