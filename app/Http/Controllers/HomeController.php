@@ -11,6 +11,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use App\User;
 use App\Message;
+use App\Reading;
 
 class HomeController extends Controller
 {
@@ -117,11 +118,7 @@ class HomeController extends Controller
         $transaction['buyer_email'] = $user->email;
         $transaction['redirect_url'] = url('/transaction');
         $transaction['currency2'] = 'BTC';
-      
-        /*
-        *   @required true
-        *   @example first item
-        */
+
         $transaction['items'][] = [
           'itemDescription' => 'Product one',
           'itemPrice' => (FLOAT) $request->amount, // USD
@@ -129,10 +126,10 @@ class HomeController extends Controller
           'itemSubtotalAmount' => (FLOAT) $request->amount // USD
         ];
 
-      
+
         $transaction['payload'] = $user->id;
 
-      
+
         $link = \CoinPayment::generatelink($transaction);
 
         return redirect($link);
@@ -154,7 +151,6 @@ class HomeController extends Controller
     {
         $trans = Transaction::where('status','0')->orderby('id','desc')->get();
 
-
         foreach($trans as $item){
 
             $response =  \CoinPayment::getstatusbytxnid($item->txn_id);
@@ -165,7 +161,6 @@ class HomeController extends Controller
                 'status_text' => $response['status_text'],
             ]);
         }
-
         \Session::flash('message', 'Transactions Updated successfully' );
 
         return redirect('/transactions');
@@ -173,14 +168,104 @@ class HomeController extends Controller
 
     public function write_ups()
     {
-        $trans = [];
+        $writeUp= Reading::orderby('id','desc')->paginate(10);
 
         $data = [
             'page' => 'Write ups',
-            'write_ups' => $trans,
+            'write_ups' => $writeUp,
         ];
-
         return view('admin.write', $data);
     }
 
+    public function add_write(Request $request)
+    {
+        $user = auth()->user();
+
+        $writeUp = new Reading([
+            'user_id' => $user->id,
+            'type' => $request->type,
+            'title' => $request->title,
+            'body' => $request->body,
+   
+        ]);
+        
+        $writeUp->save();
+
+
+
+        \Session::flash('message', 'Write up successfully added' );
+        return back();
+    }
+
+    public function view_write($id)
+    {
+        $writeUp = Reading::where('id',$id)->first();
+
+        $data = [
+            'page' => 'Write ups',
+            'write' => $writeUp,
+        ];
+        return view('admin.details', $data);
+    }
+
+    public function update_write(Request $request)
+    {
+        $user = auth()->user();
+
+
+        Reading::where('id', $request->id)->update([
+            'status' => $request->status,
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+
+
+
+        \Session::flash('message', 'Write up successfully added' );
+        return back();
+    }
+
+    public function skills()
+    {
+        $writeUp= Reading::where('type', 'Skills')->orderby('id','desc')->paginate(10);
+
+        $data = [
+            'page' => 'My Skills',
+            'write_ups' => $writeUp,
+        ];
+        return view('user.skill', $data);
+    }
+
+    public function view_read($id)
+    {
+        $writeUp = Reading::where('id',$id)->first();
+
+        $data = [
+            'page' => 'My Skills',
+            'write' => $writeUp,
+        ];
+        return view('user.read', $data);
+    }
+
+    public function library()
+    {
+        $writeUp= Reading::where('type', 'Library')->orderby('id','desc')->paginate(10);
+
+        $data = [
+            'page' => 'My Library',
+            'write_ups' => $writeUp,
+        ];
+        return view('user.library', $data);
+    }
+
+    public function view_readlib($id)
+    {
+        $writeUp = Reading::where('id',$id)->first();
+
+        $data = [
+            'page' => 'My Library',
+            'write' => $writeUp,
+        ];
+        return view('user.readlib', $data);
+    }
 }
