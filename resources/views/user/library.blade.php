@@ -25,10 +25,8 @@
                                     <!-- <span class="nav-tabs-title">Users Transactions:</span> -->
                                     <ul class="nav nav-tabs" data-tabs="tabs">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="#profile" data-toggle="modal" data-target="#exampleModal">
-                                                <i class="material-icons">playlist_add</i>ADD  Write-Up
+                                                <i class="material-icons">playlist_add</i>My Library
                                                 <div class="ripple-container"></div>
-                                            </a>
                                         </li>
                                         &nbsp;&nbsp;&nbsp;
 
@@ -47,7 +45,6 @@
                                         <th>ID</th>
                                         <th>Title</th>
                                         <th>Type</th>
-                                        <th>Status</th>
                                         <th>Date Created</th>
                                         <th>Action</th>
                                         </thead>
@@ -58,12 +55,11 @@
                                                 <td>{{$i}}</td>
                                                 <td>{{$item->title}}  </td>
                                                 <td>{{$item->type}}</td>
-                                                <td>{{$item->status}}</td>
                                                 <td>{{$item->created_at}}</td>
                                                 <td>
-                                                    <a href="{{route('view_write',['id' => $item->id])}}" >
+                                                    <a href="{{route('view_readlib',['id' => $item->id])}}" >
                                                     <button class="btn btn-success btn-sm">
-                                                        view
+                                                        Read
                                                     </button>
                                                     </a>
                                                 </td>

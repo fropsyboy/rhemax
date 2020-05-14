@@ -36,14 +36,14 @@
             </li>
 
             <li class="nav-item @if($page=='User') active @endif">
-                <a class="nav-link " href="{{ route('user') }}">
+                <a class="nav-link " href="{{ route('skills') }}">
                     <i class="material-icons">view_carousel</i>
                     <p>My Skills</p>
                 </a>
             </li>
 
             <li class="nav-item @if($page=='User') active @endif">
-                <a class="nav-link " href="{{ route('user') }}">
+                <a class="nav-link " href="{{ route('library') }}">
                     <i class="material-icons">unarchive</i>
                     <p>My Library</p>
                 </a>
