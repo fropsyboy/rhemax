@@ -76,13 +76,5 @@ Route::group(['middleware' => ['role:admin']], function() {
 
     Route::post('/update_write', 'HomeController@update_write')->name('update_write');
 
-    Route::get('/skills', 'HomeController@skills')->name('skills');
-
-    Route::get('/view_read/{id}', 'HomeController@view_read')->name('view_read');
-
-    Route::get('/library', 'HomeController@library')->name('library');
-
-    Route::get('/view_readlib/{id}', 'HomeController@view_readlib')->name('view_readlib');
-
 
 });
