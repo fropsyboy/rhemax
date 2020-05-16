@@ -41,10 +41,16 @@ Route::post('/authenticate', 'PagesController@sendToken')->name('sendToken');
 
 Route::get('/authenticate', 'PagesController@sendToken1')->name('sendToken1');
 
-
 Route::post('/sendLogin', 'PagesController@sendLogin')->name('sendLogin');
 
 
+Route::get('/skills', 'HomeController@skills')->name('skills');
+
+Route::get('/view_read/{id}', 'HomeController@view_read')->name('view_read');
+
+Route::get('/library', 'HomeController@library')->name('library');
+
+Route::get('/view_readlib/{id}', 'HomeController@view_readlib')->name('view_readlib');
 
 
 
